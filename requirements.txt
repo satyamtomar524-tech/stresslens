@@ -1,0 +1,13 @@
+streamlit>=1.65,<2
+mediapipe==0.10.35
+opencv-contrib-python>=4.10,<5
+Pillow>=11,<13
+scikit-learn>=1.6,<2
+pandas>=2.2,<3
+joblib>=1.4,<2
+langdetect==1.0.9
+pytest>=8,<10
+ruff==0.17.0
+torch>=2.14,<3
+transformers>=5.19,<6
+safetensors>=0.8,<1

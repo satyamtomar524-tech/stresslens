@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "model_name": "Dreaddit TF-IDF + logistic regression baseline",
+  "target": "Crowd annotators' binary judgement of stress expressed in Reddit text",
+  "not_measured": [
+    "clinical stress",
+    "a person's stress level",
+    "diagnosis",
+    "facial stress"
+  ],
+  "source": {
+    "paper_url": "https://aclanthology.org/D19-6213/",
+    "dataset_url": "https://www.cs.columbia.edu/~eturcan/data/dreaddit.zip",
+    "citation": "Turcan and McKeown (2019). Dreaddit: A Reddit Dataset for Stress Analysis in Social Media. LOuHI, pp. 97–107.",
+    "archive_sha256": "6c7d8859764231cca47410d6995d8941ac45b08a446a561923fd73b34f3f61cb",
+    "csv_sha256": {
+      "dreaddit-train.csv": "4e791e60d3f04dd9f14abb1228b0d4f92bf628cc84097c1c173401e98d355f4e",
+      "dreaddit-test.csv": "a3b6c9bf5d685f49d57e05d24266dddc52999843256b13e65c07267c543175fe"
+    },
+    "licensing_note": "Downloaded from the authors' public research release. The ZIP contains no separate dataset license; do not assume that the app's code license covers Reddit data or model redistribution."
+  },
+  "training": {
+    "random_seed": 42,
+    "original_train_rows": 2838,
+    "train_rows_removed_for_test_text_overlap": 3,
+    "train_rows_removed_for_test_post_overlap": 0,
+    "train_rows_removed_for_either_overlap": 3,
+    "train_rows_removed_for_within_train_duplicate_text": 18,
+    "final_train_rows": 2817,
+    "train_class_counts": {
+      "0": 1336,
+      "1": 1481
+    },
+    "features": "TF-IDF words and word bigrams, min_df=2, max_features=30000, sublinear_tf=True; no metadata",
+    "classifier": "LogisticRegression(C=1.0, solver=liblinear, class_weight=balanced, max_iter=2000)",
+    "actual_vocabulary_size": 30000,
+    "tuning": "No hyperparameter search or test-set tuning performed."
+  },
+  "evaluation": {
+    "split": "Authors' supplied test split, retained unchanged; overlapping posts/text removed from training",
+    "test_rows": 715,
+    "test_class_counts": {
+      "0": 346,
+      "1": 369
+    },
+    "accuracy": 0.7230769230769231,
+    "macro_f1": 0.7217701995188907,
+    "binary_f1_stress_label": 0.7408376963350786,
+    "majority_class_accuracy": 0.5160839160839161,
+    "confusion_matrix_labels": [
+      "0: no stress annotation",
+      "1: stress annotation"
+    ],
+    "confusion_matrix_rows_actual_columns_predicted": [
+      [
+        234,
+        112
+      ],
+      [
+        86,
+        283
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.73125,
+        "recall": 0.6763005780346821,
+        "f1-score": 0.7027027027027027,
+        "support": 346.0
+      },
+      "1": {
+        "precision": 0.7164556962025317,
+        "recall": 0.7669376693766937,
+        "f1-score": 0.7408376963350786,
+        "support": 369.0
+      },
+      "accuracy": 0.7230769230769231,
+      "macro avg": {
+        "precision": 0.7238528481012658,
+        "recall": 0.7216191237056879,
+        "f1-score": 0.7217701995188907,
+        "support": 715.0
+      },
+      "weighted avg": {
+        "precision": 0.7236148977604674,
+        "recall": 0.7230769230769231,
+        "f1-score": 0.7223835595563344,
+        "support": 715.0
+      }
+    },
+    "within_test_duplicate_text_rows": 0,
+    "test_unique_posts": 586,
+    "scope": "Metrics describe this text classifier on this dataset, before app input guards; they do not validate face cues or multimodal stress estimation."
+  },
+  "limitations": [
+    "Crowd labels describe perceived stress in text; they are not clinical or self-reported stress measurements.",
+    "English Reddit narratives differ from short personal check-ins, other languages and everyday conversation.",
+    "Exact normalized text and post-ID overlap is removed from training; near-duplicate wording and shared authors cannot be ruled out (no author identifier supplied).",
+    "Several test segments can come from one post, so rows are not fully independent.",
+    "The model can learn topic and subreddit associations; no subgroup fairness or external validation has been performed.",
+    "TF-IDF may misread negation, sarcasm, quoted speech and context. Term contributions are associations, not causes.",
+    "predict_proba scores are uncalibrated model outputs, not probabilities that a person is stressed.",
+    "No separate validation set, calibration, uncertainty interval or cross-domain test was used."
+  ],
+  "artifact": {
+    "file": "text_model.joblib",
+    "sha256": "d15a5c6ce1a7c9e29af5c96df169cc75167d27f40f689eefdc7e235e019c6139"
+  },
+  "environment": {
+    "python": "3.13.15",
+    "scikit_learn": "1.9.1",
+    "pandas": "2.3.3",
+    "joblib": "1.6.0"
+  },
+  "trained_at_utc": "2026-10-14T12:25:23.432870+00:00"
+}

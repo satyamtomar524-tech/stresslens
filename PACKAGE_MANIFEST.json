@@ -1,0 +1,337 @@
+{
+  "schema": "stresslens-public-package/1",
+  "prepared_date": "2026-10-20",
+  "purpose": "Local recruiter presentation copy; not published",
+  "source_identity_sha256": "571a5c342ea69876249298c77e9776b5e631a903261c196033a69122d164e913",
+  "verification": {
+    "source_scope": "Existing installed environment and local artifacts",
+    "source_tests_passed": 484,
+    "source_sdk_tests_skipped": 10,
+    "source_subtests_passed": 7,
+    "ruff": "passed",
+    "package_core_scope": "Seven model-free test files from actual package",
+    "package_core_tests_passed": 208,
+    "counts_are_separate": true,
+    "package_default_render": "AppTest passed with model files absent",
+    "clean_install": "not tested",
+    "hardware_and_scientific_validation": "not established by this release"
+  },
+  "project_license": "Not selected; retain third-party attribution and terms",
+  "excluded": [
+    "environments and caches",
+    "raw datasets and model weights",
+    "personal records and media",
+    "credentials",
+    "internal review records"
+  ],
+  "presentation_revision": {
+    "prepared_at_utc": "2026-10-20T07:20:53.435475+00:00",
+    "source_files_unchanged": 63,
+    "approved_screenshots_unchanged": 3,
+    "original_accepted_archive_sha256": "85c3327bbdaae9edb0f98b6e23c12f89989c708951f6888b1a4ab7fce0b61783",
+    "application_suites_rerun": false,
+    "new_scope": "Documentation, visual brief, file/link/inventory checks only"
+  },
+  "files": {
+    ".gitignore": {
+      "sha256": "ffec4813b32af7a8e7a97942ce38d1a47699ecff52ad40facd067694c12f71fc",
+      "bytes": 300
+    },
+    ".streamlit/config.toml": {
+      "sha256": "9668bd39904bbfd59ac312659ae7763cdc0629f2efe539e95fec6aa341c51c13",
+      "bytes": 280
+    },
+    "app.py": {
+      "sha256": "49046f2e3d703ae5bf9e05de51a2e5ee8e875cc675962454e715c8d01c0aff0c",
+      "bytes": 21115
+    },
+    "assets/app.css": {
+      "sha256": "76899fc0a13d9eee41c0f39422597886a6736afb909a525569280b0adaf98ee3",
+      "bytes": 5653
+    },
+    "assets/ATTRIBUTION.md": {
+      "sha256": "f31411273e6f6a44f25140fa114fdda0d6e470edc42e5b8a138ea7952558bdee",
+      "bytes": 587
+    },
+    "assets/sample_face.jpg": {
+      "sha256": "a6f11efaa834706db23f275b6115058fa87fc7f14362681e6abe14e82749de3e",
+      "bytes": 176561
+    },
+    "docs/images/fictional-report.png": {
+      "sha256": "56771714d38e384cfc697f8d235b862ebd2d5c52ca55650bd301f3ab796e090c",
+      "bytes": 57385
+    },
+    "docs/images/fictional-week.png": {
+      "sha256": "07bfaaca1c2d4fc12d25d560e57fa49262587328450b785fc77bceee000f0d88",
+      "bytes": 51386
+    },
+    "docs/images/work-session.png": {
+      "sha256": "a33209276b3958d81a5eb1459d686573ff59efde543d6b1270df427ad0f29336",
+      "bytes": 45953
+    },
+    "docs/PORTFOLIO.md": {
+      "sha256": "535280d3a0ef254cd228b5597f360934b26facad85977c0e263f222df9a0a3fd",
+      "bytes": 4843
+    },
+    "docs/Satyam_Tomar_StressLens.pdf": {
+      "sha256": "52a93882f8cfc3f5bdb320d0619e9ca7faf136472e4609346c0797bbb8c7e9f7",
+      "bytes": 226192
+    },
+    "docs/SETUP.md": {
+      "sha256": "385e9f99477b2432a0074f86239d881a740c846cb700630bd0c679dd2e2bdf79",
+      "bytes": 4305
+    },
+    "docs/VERIFICATION.md": {
+      "sha256": "f61c4b3d4e41239d508d7b072b575de8dad12c444ec876f5c401425fb6ff7e94",
+      "bytes": 5293
+    },
+    "models/explainer_manifest.json": {
+      "sha256": "be25256f462b70f6056986fd8c528a3caf7bb01dddb75213adc730ac8782ef8e",
+      "bytes": 1284
+    },
+    "models/face_model_manifest.json": {
+      "sha256": "79f11a5f00f4a19d2bf80d3e4fb0cbfc7c31bb42f44935de266403d0a2939352",
+      "bytes": 389
+    },
+    "models/text_model_metrics.json": {
+      "sha256": "406323370d341864eeb7cbfb100ada41fdd078f5ad423e9e6d87a8972db9b557",
+      "bytes": 4811
+    },
+    "README.md": {
+      "sha256": "3853701baf8e801b6b563b7714981e829a3d2bca57cc35eda3e9c966c844b9e9",
+      "bytes": 3490
+    },
+    "requirements-dev.txt": {
+      "sha256": "ebba8e8e7990b0e7c94237a6fdffc1fcda7f8f32493df6440333cb35cbf633b1",
+      "bytes": 111
+    },
+    "requirements-lock.txt": {
+      "sha256": "0dc0a65866021ce1bf3bacfb81aa0aa40baee91f0191846c264c49abc6b82bcc",
+      "bytes": 1582
+    },
+    "requirements.txt": {
+      "sha256": "e3a7f85b876588e938da5163c4e255e9b79ffd03de09a233619d823787936819",
+      "bytes": 237
+    },
+    "ruff.toml": {
+      "sha256": "a36158216279d8a031e0e3379744b1daec2c3782272e150e2e114461b763ff91",
+      "bytes": 135
+    },
+    "scripts/check_camera.py": {
+      "sha256": "cc298f0048f0c2338b44d385f0e338c20d6fc368a139d99c75b286b7fc0688d9",
+      "bytes": 1931
+    },
+    "scripts/setup_explainer.py": {
+      "sha256": "df3327238cb7e509db7661949b4ea735e57dc3e79660ed71a7c3f8bde4d8928b",
+      "bytes": 2907
+    },
+    "scripts/setup_models.py": {
+      "sha256": "304646ec81be930849aebc86dce05cb31198caa144209363d61072587d0fb92c",
+      "bytes": 1466
+    },
+    "scripts/train_text_model.py": {
+      "sha256": "a155291e79d31634e2794ef19206bffd83bf2dcbda844241cff1872f0b91c18f",
+      "bytes": 9658
+    },
+    "START_STRESSLENS.cmd": {
+      "sha256": "695a1699988c5b4516586081a3a76f15dd1ebf18928800714713a5056303cb92",
+      "bytes": 355
+    },
+    "stresslens/__init__.py": {
+      "sha256": "188dcae1635930769ff9844df606dc0d0878775e18b444418bfeddaa11faa4e3",
+      "bytes": 55
+    },
+    "stresslens/charts.py": {
+      "sha256": "29f38ba406c6aa0c277c75989542639d0a37b8c41f9daf7376e6730d4f641b7e",
+      "bytes": 1124
+    },
+    "stresslens/demo_week.py": {
+      "sha256": "7786034a3224bc6ac909b116b2e9dfff2ecc71377d3d7537ec15f47f534096bc",
+      "bytes": 1828
+    },
+    "stresslens/demo_week_ui.py": {
+      "sha256": "8f6717221931ecd89ec36c28597631b2dc0ab937b44d4aa1e1c7c8c5030332bc",
+      "bytes": 6328
+    },
+    "stresslens/evidence.py": {
+      "sha256": "ff931e9d5b869b1473f1886c2b720f3b801a762f56f8bac75aba7d31f104be57",
+      "bytes": 12120
+    },
+    "stresslens/explainer.py": {
+      "sha256": "9291f53d5010d7e5295b492f1676d2bcf7b3dee9f0083c6bff2de41a195a0d57",
+      "bytes": 11653
+    },
+    "stresslens/face.py": {
+      "sha256": "3fd8caaf77b98f439f4b9ebb144c7bfceb55c3f9d7b3f8ece41cec66176d48dc",
+      "bytes": 9970
+    },
+    "stresslens/insights.py": {
+      "sha256": "146116ce54570f310fb06075fd92d5df14a75d596eeeba42630b61f1bca0718b",
+      "bytes": 8054
+    },
+    "stresslens/live.py": {
+      "sha256": "6b50a57d93230faaf5e82dd65f56f2e7a40885ddc1e03911250eb62fbcd6f621",
+      "bytes": 22342
+    },
+    "stresslens/live_status.py": {
+      "sha256": "c041ccb4749679f33b2444f109801c22492c572d2afa9e8b608283a744fbcc94",
+      "bytes": 2749
+    },
+    "stresslens/live_ui.py": {
+      "sha256": "f185afa193a1caccf16596e63519e7654652f3e8f578127db2feba990b59d896",
+      "bytes": 12999
+    },
+    "stresslens/output_summaries.py": {
+      "sha256": "2eb1ae0da95d92805e76a765c4abb7c7d5eb153574019f15b52128f9907246bc",
+      "bytes": 3828
+    },
+    "stresslens/personal_patterns.py": {
+      "sha256": "178745cc916787bd8f91fb840587fc8a27d8d7b23bbdf798e310f8e00ed1c51f",
+      "bytes": 3918
+    },
+    "stresslens/personal_photo.py": {
+      "sha256": "39aabf5641944c3de144825cb9a6ca4a6c472ac6edbed6b6d8d355ca51d53122",
+      "bytes": 3688
+    },
+    "stresslens/photo_ui.py": {
+      "sha256": "7a38b2ef9d450eab087be43a9f77f7549d6d60eff9a4ed17e7b5199a13de90e8",
+      "bytes": 3572
+    },
+    "stresslens/session_measurements.py": {
+      "sha256": "8a4bfd88e219277698c6d28d1b276d654bba62a8a969f13349cb5d7418fa22fe",
+      "bytes": 10356
+    },
+    "stresslens/session_report.py": {
+      "sha256": "ae1cf520a9996c02f76adffb39b095289f909d3c54391305a08daf5c3ea6239e",
+      "bytes": 24556
+    },
+    "stresslens/session_ui.py": {
+      "sha256": "03d987b0c80f172a384b3691d79f49afec754d5ac4ea460ebf742a1cc62b1426",
+      "bytes": 29076
+    },
+    "stresslens/text_model.py": {
+      "sha256": "ad16120c233d7f22d6099c526c299c6d9ed2daf0ebf4013ecb10924fe1626cfc",
+      "bytes": 7971
+    },
+    "stresslens/wellbeing.py": {
+      "sha256": "98bb062b0d791ee738d434d5d6ed274337f7ad10974d27de4da9830860f1bea7",
+      "bytes": 4320
+    },
+    "stresslens/wellbeing_store.py": {
+      "sha256": "ebfb600d9b2ec845fe3a49301c4b85da2afa668a3a280f8496376002636223be",
+      "bytes": 5542
+    },
+    "stresslens/wellbeing_ui.py": {
+      "sha256": "c13445464e733db9f8065c80d49ab6fc1ee1caaef6ce99ed1e791349e84b73b0",
+      "bytes": 12152
+    },
+    "tests/conftest.py": {
+      "sha256": "85f748e397c16ad38cfa75295fb98a86236fe9b29ea60b3fccce32db9ae2e365",
+      "bytes": 1670
+    },
+    "tests/test_app.py": {
+      "sha256": "3ce913a3c6c6267ce2a54b1541cdad4dbbb60be428f84222e497de2c80467af7",
+      "bytes": 17058
+    },
+    "tests/test_camera_cli.py": {
+      "sha256": "ba149804086a3bbe90aedfddc14489e705b96d752b2cef371e4bbb71dd7f7072",
+      "bytes": 1611
+    },
+    "tests/test_demo_week.py": {
+      "sha256": "ad43f2fb6bb0fa290373aab430168c1087e0c4cfce0e816a8e52dddb17a2303e",
+      "bytes": 4476
+    },
+    "tests/test_demo_week_ui.py": {
+      "sha256": "f12dcda3e719b118217d01929020a5b08649ff35606a7c5398769dc278e61574",
+      "bytes": 6021
+    },
+    "tests/test_evidence.py": {
+      "sha256": "e0e862623e73a5757f03677a0c8188d1d804e2b239e3963197cb2f456e2676b5",
+      "bytes": 3862
+    },
+    "tests/test_explainer.py": {
+      "sha256": "5a9930fd1e63906f73fc19b466a366f7cd30242bace8ea8976fcdb1014f9a9e1",
+      "bytes": 12067
+    },
+    "tests/test_face.py": {
+      "sha256": "c2993cdaa996a2fc3275a9836b8e8abfa755959d07ec53c3799423ac9853129a",
+      "bytes": 6742
+    },
+    "tests/test_insights.py": {
+      "sha256": "da6a55fb7d01e14ca3c02a708d2c2d5adc13ca7232ef7328916095d7827d3114",
+      "bytes": 5102
+    },
+    "tests/test_live.py": {
+      "sha256": "3937073f60d75e2b17d96e372ecb48d0e13a1d0e71f5945f60454b4b24e2ea62",
+      "bytes": 30072
+    },
+    "tests/test_live_status.py": {
+      "sha256": "0adf4f55bf492a18bc58a24b7ed29c62755dbd2dec65116eb6b0b482a596fc1b",
+      "bytes": 2866
+    },
+    "tests/test_output_photo_app.py": {
+      "sha256": "23af53c03d248456f89b5bf0dcf99f0968c454fcc695b1fea30ef3c0b16c9001",
+      "bytes": 7442
+    },
+    "tests/test_output_summaries.py": {
+      "sha256": "6c17a36dae635063eeaab6f7e508e368d06e265974b2582d942be72a0ae1af97",
+      "bytes": 4868
+    },
+    "tests/test_personal_patterns.py": {
+      "sha256": "baf7f5e028d1f8ec9536c98a6d6877477672f28e152c55bcdb35bd95c6fe2b6b",
+      "bytes": 5921
+    },
+    "tests/test_personal_photo.py": {
+      "sha256": "1c3d0c9c61b99f6fb8a0f8b2158e765594662d695d28839f9827af34c520a763",
+      "bytes": 4926
+    },
+    "tests/test_photo_capture.py": {
+      "sha256": "7407a2eb27286c646952cb7c05d9da072b665c519a23f6e7401b818c124f631f",
+      "bytes": 3239
+    },
+    "tests/test_photo_ui.py": {
+      "sha256": "2f0bb4dbc1ced3b08b972114d9d6c74809b9117000e5aad095dac2f72d05b596",
+      "bytes": 3052
+    },
+    "tests/test_sdk_loading.py": {
+      "sha256": "a788cac4cd18fd1c02ece5486744eb91bfadcaa1b2ad819bb97e6ed279bb7aa4",
+      "bytes": 689
+    },
+    "tests/test_sdk_test_policy.py": {
+      "sha256": "1b95330ce61081e319c907dc252a63dab93dc892f86d9d1b86ff4e0d924934d3",
+      "bytes": 1446
+    },
+    "tests/test_session_measurements.py": {
+      "sha256": "2cb544f323c433da87744f1f604d183c71e6922c733bd5d33b620f94175fbef9",
+      "bytes": 9505
+    },
+    "tests/test_session_report.py": {
+      "sha256": "68d7c64c7ab483ce37bdca1d14d6a4ca62474f35afcb11271ce9f77447975daf",
+      "bytes": 19752
+    },
+    "tests/test_session_ui.py": {
+      "sha256": "75103fd508c74b3f324b44a4a8cd3411fe65e9cf2d95cf2ea7b2232a47043a38",
+      "bytes": 39878
+    },
+    "tests/test_text_model.py": {
+      "sha256": "e4c4c122f0745a405efaa0b20f7fe6d4375e62c59a3d29eb9fbe0e28974354f1",
+      "bytes": 3471
+    },
+    "tests/test_trends.py": {
+      "sha256": "eff4ff20cc48911821beb81c8a3c2d465031d8fa498c9a21eb4de7269c0199ab",
+      "bytes": 4129
+    },
+    "tests/test_wellbeing.py": {
+      "sha256": "d0286e28441bf6af639bd983b28150acd976bf29b43cf1aa0ae4af533bb6a46c",
+      "bytes": 4684
+    },
+    "tests/test_wellbeing_store.py": {
+      "sha256": "33ec40486c86a315c328fefb6a1a881a9a2f0900ce0e976f489bea2a6b58237c",
+      "bytes": 5007
+    },
+    "tests/test_wellbeing_ui.py": {
+      "sha256": "97c6dc9a1a20de0fd5095205b58d2f206d71d3335a57e97ac6885f0cafb1f3f2",
+      "bytes": 10683
+    }
+  }
+}

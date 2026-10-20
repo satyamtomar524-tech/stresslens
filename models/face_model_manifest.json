@@ -1,0 +1,8 @@
+{
+  "name": "Google MediaPipe Face Landmarker",
+  "version": "float16/1",
+  "source": "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task",
+  "bytes": 3758596,
+  "sha256": "64184e229b263107bc2b804c6625db1341ff2bb731874b0bcc2fe6544e0bc9ff",
+  "purpose": "Face landmarks and blendshape coefficients; not stress prediction"
+}
