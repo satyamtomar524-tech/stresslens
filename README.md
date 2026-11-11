@@ -1,12 +1,15 @@
 # StressLens
 
+> **Working prototype — Stage 2 in progress**  
+> **Project owner: Satyam Tomar · Status updated: 11 November 2026**
+
 ### Work time, voluntary check-ins and clear reports
 
 I built StressLens as an AI-assisted portfolio project around a simple workday problem: keeping track of work time and recording how I feel without losing the context behind the numbers.
 
 The result is a local Python/Streamlit prototype with a work clock, optional check-ins, break reminders and descriptive charts. The main demonstration works with the camera off.
 
-**Satyam Tomar** · Local portfolio prototype · October 2026
+**Python · Streamlit · pandas · Local-first demonstration**
 
 ![A fictional week with 14 invented check-ins across seven UTC days.](docs/images/fictional-week.png)
 
@@ -35,6 +38,23 @@ The fictional-week view has no export. Reports do not infer stress from facial m
 ## My contribution
 
 I defined the use case, set priorities, requested changes and reviewed the experience. Codex helped with implementation, debugging, tests and documentation. The project demonstrates that collaborative process; I do not claim to have independently written every component or trained MediaPipe or Qwen.
+
+## Development status
+
+| Stage | Status | Scope |
+|---|---|---|
+| Stage 1 — local foundation | Prototype implemented; checks recorded on 20 October 2026 | Work clock, voluntary check-ins, optional break reminders, fictional-week charts and session reports. |
+| Stage 2 — refinement and validation | In progress | Improve usability and reporting, check installation reproducibility and investigate optional camera performance. |
+| Future user testing | Planned | Gather voluntary feedback after the local experience and consent flow are ready. |
+
+Stage 2 is the current development phase, not a completed release. Its remaining work includes:
+
+- [ ] Refine the report presentation and validate the end-to-end user experience.
+- [ ] Verify setup on a clean machine and document any reproducibility issues.
+- [ ] Investigate optional camera throughput with aligned diagnostic measurements before choosing a fix.
+- [ ] Record the results and remaining limitations before a wider prototype trial.
+
+**Latest update — 11 November 2026:** clarified the public prototype status, project ownership and Stage 2 roadmap. This update changes documentation only; it does not claim new features, new test results or a completion date.
 
 ## Verification
 
