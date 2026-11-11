@@ -1,6 +1,6 @@
 # How I worked on StressLens
 
-**Satyam Tomar | October 2026 | AI-assisted portfolio project**
+**Satyam Tomar | Working prototype — Stage 2 in progress | Updated 11 November 2026**
 
 ## The problem I chose
 
@@ -12,7 +12,7 @@ The useful output is a report someone can inspect and explain. The project does 
 
 I defined the personal use case, directed priorities, requested changes and reviewed the interface. Codex assisted with implementation, debugging, tests and documentation. I can point to the requirements and decisions I directed without claiming independent authorship of every line of code.
 
-The decisions below describe the finished project and the evidence behind it. They are not a reconstructed commit history.
+The decisions below describe the implemented Stage 1 prototype and the evidence behind it. Stage 2 refinement and validation are in progress; the project is not a finished production system. They are not a reconstructed commit history.
 
 ## 1. Make work time an explicit action
 
