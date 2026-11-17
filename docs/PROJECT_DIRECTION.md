@@ -95,3 +95,16 @@ UBFC-Phys investigations mentioned in the project history do not establish a tra
 ## Next coding-session instruction
 
 Read `AGENTS.md`, this brief and `docs/VERIFICATION.md`. Start with milestone 2 unless the owner supplies a different priority. First inspect how `WorkSession.session_id`, `CompanionState.extras`, optional restored history and the shared `ReportWorkspace` relate. Propose the smallest report view that can identify its data scope honestly, then implement and verify that bounded change. Do not start a rewrite, add a new model or treat the whole roadmap as one task.
+
+
+## Milestone 2 implementation decision — 17 November 2026
+
+The Work session screen now renders a work-session report directly, without visiting Live camera. This is a derived view, not a second ledger: WorkSession supplies active seconds and current/latest-ended ID; current shared ReportWorkspace point records plus CompanionState.extras supply answers and clarity. Only exact session-ID matches are included. Restored history is deliberately excluded, even after Clear; it remains in the separately labelled all-check-in patterns. Answers from the camera point form without work context remain standalone.
+
+After End, the form defaults to standalone. An explicit unchecked checkbox can attach a closing answer to that ended session, using its actual answer timestamp without extending active time. The choice cannot carry into another work session. Starting a new session replaces the clock; older clock durations are not archived. Download before starting again. Clear removes current ledger answers/context, not the work clock or separately saved history.
+
+The new `stresslens-work-report/1` JSON/TXT exports contain the same selected answers, clarity, active seconds, start/end timestamps, categorical counts, scope and deterministic explanation shown by the report. TXT includes the complete JSON payload after its readable introduction. Existing observation-ledger/camera exports are unchanged. No camera duration or device readings are folded into this work report. This is not an import/recovery format or a scientific inference.
+
+Small additional improvement: the all-check-in patterns now explicitly state that current and opted-in restored history can span multiple sessions. Category bars retain zero, unsure, skipped and expired states without interpolation.
+
+Remaining milestone evidence: real-browser visual/download acceptance and user review on a disposable local session. AppTest journeys are not a substitute for a browser visual review. Next after that gate: milestone 3 clean-environment reproducibility, not camera inference or a rewrite.

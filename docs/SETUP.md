@@ -34,7 +34,9 @@ Use a disposable session with fictional inputs. Leave camera/SDK consent and sav
 4. **60-75 seconds:** show check-in and reminder controls. Reminders are in-app prompts, not operating-system notifications; do not imply a full reminder interval elapsed.
 5. **75-90 seconds:** explain the separate session-report exports and the AI-assisted contribution.
 
-For a longer demo, save one clearly fictional check-in in the disposable session, then open **Live camera -> Your session report -> More details** without enabling the camera. JSON and TXT downloads describe that same report. Clear only the disposable report afterwards.
+For the new work report, use **Work session → Your work-session report** after Start, a fictional check-in and End. Optionally attach a closing answer explicitly; otherwise it stays standalone. Open **Work report details and downloads** for work-scoped JSON/TXT, including clarity and active time. Download before starting another session. These exports are separate from the existing observation-ledger exports.
+
+For the older observation-ledger demo, save one clearly fictional check-in in the disposable session, then open **Live camera -> Your session report -> More details** without enabling the camera. JSON and TXT downloads describe that same report. Clear only the disposable report afterwards.
 
 The fictional-week view has no export. Upload & text produces a separate result JSON. Manual/CSV readings do not establish a connection to a wearable.
 

@@ -11,6 +11,7 @@ from stresslens.session_ui import RESPONSES, response_value
 from stresslens.wellbeing import WorkSession, checkin_record
 from stresslens.wellbeing_store import HistoryError, default_history_path, merge_checkins, save_history
 from stresslens.output_summaries import work_overview
+from stresslens.work_report import build_work_report, work_report_json, work_report_text
 
 
 CLARITY_CHOICES = [None, "Clear", "Mixed", "Foggy", "Unsure", "Skip"]
@@ -71,6 +72,9 @@ def save_checkin(state, controller, expected_token):
             raise ValueError("Choose a listed clarity response or leave it unanswered.")
         clarity = "skipped" if choice in (None, "Skip") else choice.lower()
         session_id = state.work.session_id if state.work.state in {"working", "paused"} else "standalone"
+        if (state.work.state == "ended" and
+                st.session_state.get(f"wellbeing_closing_{generation}_{state.work.session_id}", False)):
+            session_id = state.work.session_id
         point = SelfReport(expected_token, state.work.utc_clock(), stress_state, stress_value)
         controller.workspace.add_self_report(point)
     except (ValueError, RuntimeError) as exc:
@@ -152,6 +156,10 @@ def render_wellbeing(controller, *, summarize):
         st.selectbox("How clear does your thinking feel right now? (optional)", CLARITY_CHOICES, index=0,
                      format_func=lambda value: "Leave unanswered" if value is None else value,
                      key=f"wellbeing_clarity_{generation}")
+        if work.state == "ended":
+            st.checkbox("Attach this closing check-in to the ended work session", value=False,
+                        key=f"wellbeing_closing_{generation}_{state.work.session_id}")
+            st.caption("Unchecked: standalone. Checked: linked to the ended session, at the actual answer time; the clock stays stopped.")
         st.form_submit_button("Save check-in", on_click=save_checkin, args=(state, controller, state.form_token))
     if state.notice:
         kind, message = state.notice
@@ -183,7 +191,34 @@ def render_wellbeing(controller, *, summarize):
         if state.history_enabled and state.history_dirty:
             st.button("Retry saving history", on_click=persist_history, args=(controller, state), key="wellbeing_retry_history")
     
+        st.subheader("Your work-session report")
+        st.caption("Current or most recently ended work session only. Earlier, standalone and restored answers are excluded. "
+                   "Starting another session replaces this clock; download this report first if you want to keep it.")
+        report = build_work_report(work, current_records(controller, state))
+        if work.session_id is None:
+            st.info("Start work to create a work-session report. Standalone answers remain in the patterns below.")
+        else:
+            st.write(report["explanation"])
+            st.caption("These are voluntary answers, not automatic stress detection. Active work time excludes pauses; "
+                       "it is not camera-on time or the span between answers. The report refreshes when this view updates.")
+            if report["answer_counts"]:
+                st.bar_chart(pd.DataFrame(report["answer_counts"]).set_index("answer"),
+                             y="count", height=260)
+            else:
+                st.info("No check-ins linked to this work session. No stress or clarity conclusion is available.")
+            with st.expander("Work report details and downloads"):
+                st.write(report["scope"])
+                st.write({"Started (UTC)": report["started_at"], "Ended (UTC)": report["ended_at"],
+                          "Active seconds": report["active_seconds"], "Linked check-ins": len(report["checkins"])})
+                st.download_button("Download work report JSON", work_report_json(report),
+                                   "stresslens-work-report.json", "application/json", key="work_report_json")
+                st.download_button("Download work report TXT", work_report_text(report),
+                                   "stresslens-work-report.txt", "text/plain", key="work_report_txt")
+            st.caption("Separate work-report export (includes clarity and active time). Existing camera/report-ledger exports are unchanged. "
+                       "Clearing the shared report removes these current answers, not the clock or saved history.")
+
         st.subheader("Your check-in patterns")
+        st.caption("All current check-ins, plus restored history only when enabled; this is not limited to the work session above.")
         st.caption("Counts describe answers you recorded, with missing choices kept separate. "
                    "They do not estimate stress automatically or show that a break caused a change.")
         try:

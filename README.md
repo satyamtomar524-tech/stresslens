@@ -23,6 +23,8 @@ The current foundation is a local Python/Streamlit prototype with a work clock, 
 - [Run it locally](docs/SETUP.md): setup, optional components and a short demonstration.
 - [Verification record](docs/VERIFICATION.md): what was checked and what remains unverified.
 
+The recovery branch adds **Work session → Your work-session report**: current/latest-ended session answers, categorical charts, factual wording and separate work-scoped JSON/TXT downloads. Closing answers after End require an explicit choice; older/restored history stays separate. Browser visual acceptance remains pending.
+
 ## What the application does
 
 | Area | What to expect |
@@ -61,7 +63,7 @@ Stage 2 is the current development phase, not a completed release. Stage 2 work 
 - [ ] Investigate optional camera throughput with aligned diagnostic measurements before choosing a fix.
 - [ ] Record the results and remaining limitations before a wider prototype trial.
 
-**Latest update — 17 November 2026:** restored the original purpose and coding instructions; corrected short-summary wording about uncertainty and record scope. See the dated [verification record](docs/VERIFICATION.md) for the actual checks. Report navigation, full work-session exports, clean installation and automatic detection remain open work.
+**Latest update — 17 November 2026:** restored the original purpose and coding instructions; corrected short-summary wording about uncertainty and record scope. See the dated [verification record](docs/VERIFICATION.md) for the actual checks. Milestone 2 adds work-session reporting on this branch; browser acceptance, clean installation and automatic detection remain open work.
 
 ## Verification
 

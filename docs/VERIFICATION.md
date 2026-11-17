@@ -103,3 +103,23 @@ An independent AI-assisted review inspected the code, new instructions, source h
 Physical-camera/SDK performance, phone/watch operation, scientific stress validation and clean-machine setup remain unverified. The optional camera-rate decline has no established cause. No clinical accuracy, guaranteed 10 Hz, production deployment, user adoption or business impact is claimed.
 
 Screenshots are approved captures from disposable fictional QA state, taken on 20 October 2026. They do not contain participant data. The repository is public; a project-code license has not been selected.
+
+
+## Fresh checks — 17 November 2026 milestone 2
+
+Baseline: `d6ff1cf5c34396a7d982f0d9c43bd7504c9e6610`, recovery branch. Implemented a derived current/latest-ended work report, explicit closing-answer association, categorical counts and separate work-report/1 JSON/TXT exports. Older/restored history is excluded; original ledger exports remain unchanged.
+
+Environment: owner's existing Windows Python 3.13.15, Streamlit 1.65.0, existing project virtual environment; no dependencies installed or security settings changed. Work performed in an isolated local checkout, not the running app source. All test records fictional; history paths temporary.
+
+Initial normal-plugin pytest invocation made no output/progress visible and was stopped after identifying only this task's two test process IDs. Partial output appeared on termination; no pass is claimed for that run. Cause unestablished. With `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1`, the first bounded diagnostic run passed 230 tests in 17.79 seconds. Review then added a regression preventing a closing checkbox choice from carrying into another work session.
+
+Final command (using the existing environment's Python, with plugin autoload disabled):
+
+```text
+python -B -m pytest -q -rs tests/test_wellbeing_ui.py tests/test_demo_week_ui.py tests/test_wellbeing.py tests/test_wellbeing_store.py tests/test_personal_patterns.py tests/test_demo_week.py tests/test_session_report.py tests/test_session_measurements.py tests/test_output_summaries.py
+python -B -m ruff check --no-cache app.py stresslens scripts tests
+```
+
+Actual final results: **231 passed in 32.38 seconds; Ruff all checks passed**. This is one overlapping nine-file scope, not additive to historical counts. Fictional Streamlit AppTests cover Start/answer/Pause/Resume/End, standalone versus explicitly attached closing answers, stopped elapsed time, empty/second sessions, restored history exclusion, Clear, unsure/skipped/zero answers, export serialization parity and download controls. Existing demo isolation tests passed. The run used no SDK consent option or model downloads; no physical camera was started.
+
+Limitations: AppTest is not a real-browser visual/download interaction. Serialized JSON/TXT payload parity was checked, not browser-downloaded bytes. Full installed-artifact suite, real hardware, clean install, scientific validity and current running app were not tested. A real-browser disposable visual/download journey remains the next milestone-2 acceptance gate. The live laptop app has not been switched to this checkout. No claim of completed milestone 2 or completed Stage 2.
