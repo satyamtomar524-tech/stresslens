@@ -208,8 +208,11 @@ def render_wellbeing(controller, *, summarize):
                 st.info("No check-ins linked to this work session. No stress or clarity conclusion is available.")
             with st.expander("Work report details and downloads"):
                 st.write(report["scope"])
+                if work.state == "working":
+                    st.caption("Each download is a snapshot. Active time can differ between downloads while work is running.")
                 st.write({"Started (UTC)": report["started_at"], "Ended (UTC)": report["ended_at"],
-                          "Active seconds": report["active_seconds"], "Linked check-ins": len(report["checkins"])})
+                          "Active seconds (rounded)": round(report["active_seconds"], 1),
+                          "Linked check-ins": len(report["checkins"])})
                 st.download_button("Download work report JSON", work_report_json(report),
                                    "stresslens-work-report.json", "application/json", key="work_report_json")
                 st.download_button("Download work report TXT", work_report_text(report),

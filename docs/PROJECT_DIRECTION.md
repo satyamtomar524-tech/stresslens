@@ -108,3 +108,10 @@ The new `stresslens-work-report/1` JSON/TXT exports contain the same selected an
 Small additional improvement: the all-check-in patterns now explicitly state that current and opted-in restored history can span multiple sessions. Category bars retain zero, unsure, skipped and expired states without interpolation.
 
 Remaining milestone evidence: real-browser visual/download acceptance and user review on a disposable local session. AppTest journeys are not a substitute for a browser visual review. Next after that gate: milestone 3 clean-environment reproducibility, not camera inference or a rewrite.
+
+
+## Progress — 17 November 2026 browser and environment checks
+
+The camera-off work-session report was exercised in a disposable local browser; ended-session JSON and TXT downloads contained matching fictional data. A fresh isolated Windows environment on the same laptop installed the pinned lock, passed pip check and fictional UI AppTests, and rendered a fictional camera-off browser flow. Details and limits are in VERIFICATION.md. A separate clean computer, user acceptance and camera validation remain unverified. The report scope and explicit closing choice remain as specified above.
+
+The previous camera slowdown remains unexplained. Its performance investigation requires privacy-preserving, user-run measurements under the owner's diagnostic boundaries before a fix or numerical improvement is claimed. No camera/SDK use or participant data collection was performed during this progress check. A draft usability procedure is in USABILITY_TRIAL_DRAFT.md; it is not an invitation or trial result.
