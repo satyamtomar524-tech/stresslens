@@ -1,12 +1,12 @@
 # How I worked on StressLens
 
-**Satyam Tomar | Working prototype — Stage 2 in progress | Updated 11 November 2026**
+**Satyam Tomar | Working prototype — Stage 2 in progress | Updated 17 November 2026**
 
 ## The problem I chose
 
-I wanted a clearer way to keep track of work time and voluntary check-ins during the day. That became a small local reporting application: a work clock, optional answers and charts that show what was actually recorded.
+I started with the experience of noticing mental fatigue or fogginess only after a long period of work. I wanted a laptop companion that could help me notice possible difficulties earlier and understand a session afterwards through simple graphs and a short explanation. Optional camera support and eventual automatic detection were part of that ambition.
 
-The useful output is a report someone can inspect and explain. The project does not establish whether a person is stressed from their face.
+The implemented foundation is a work clock, voluntary check-ins, reminders and descriptive reporting. These give me a usable starting point; automatic stress or fatigue detection remains unfinished and unvalidated. The [project direction](PROJECT_DIRECTION.md) keeps that longer-term aim connected to concrete next milestones.
 
 ## My role
 
@@ -27,7 +27,7 @@ Check: [start, pause, resume and end without a camera](../tests/test_wellbeing.p
 
 ## 2. Preserve the meaning of an answer
 
-An unsure or skipped answer is different from an answered value of zero. The summaries retain those categories and show denominators. This makes the missing information visible instead of presenting an uninterrupted story.
+An unsure or skipped answer is different from an answered value of zero. The stored records and category charts preserve those states. The 17 November summary correction also names unsure, skipped and expired counts in the short prose, instead of grouping them all as missing. It labels the displayed check-in scope separately from the current work clock.
 
 The fictional week uses 14 invented check-ins across seven UTC days. It is a view-only demonstration and stays separate from personal records and the work clock.
 
@@ -44,9 +44,9 @@ A voluntary answer, an imported device reading and a camera observation mean dif
 
 CSV/manual readings are validated before they enter the report. A repeated source reading is handled differently from a conflicting reading. There is no live wearable connection.
 
-![A fictional unsure answer remains missing in a session report.](images/fictional-report.png)
+![A fictional unsure answer has no numeric rating in the earlier session report.](images/fictional-report.png)
 
-*Fictional QA state, 20 October 2026. The report shows an unsure answer with no numeric value.*
+*Fictional QA state, 20 October 2026. The report shows an unsure answer with no numeric value. This historical screenshot predates the short-summary wording correction.*
 
 Implementation: [measurement validation](../stresslens/session_measurements.py#L71), [report export](../stresslens/session_report.py#L489).  
 Checks: [JSON/TXT agreement](../tests/test_session_report.py#L324), [duplicate handling](../tests/test_session_report.py#L406), [conflict rejection](../tests/test_session_report.py#L447).
@@ -77,6 +77,6 @@ The [setup and demo guide](SETUP.md) contains the full route. The [verification 
 
 ## What I would improve next
 
-The optional camera-rate decline needs aligned measurements before choosing a performance fix. Clean-machine setup is another unverified scope. Neither a faster sampling rate nor a health-prediction result is promised here.
+The next product task is one understandable work-session report reached directly from Work session, with the correct session scope and active work time. Clean installation, measured camera diagnostics and voluntary usability feedback follow as distinct milestones. Automatic inference has its own research and evaluation path. See the [project direction and acceptance criteria](PROJECT_DIRECTION.md); none of these open milestones is presented as complete.
 
 [Back to the project](../README.md)

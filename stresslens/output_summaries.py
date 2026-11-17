@@ -1,5 +1,6 @@
 """Short computed descriptions; never convert measurements into stress diagnoses."""
 import math
+from collections import Counter
 
 
 def analysis_overview(text, face, rating):
@@ -32,18 +33,21 @@ def work_overview(state, elapsed_seconds, summary):
     label = {"idle": "Not started", "working": "Working", "paused": "Paused", "ended": "Ended"}[state]
     seconds = max(0, int(elapsed_seconds))
     total = summary["total_checkins"]
-    stress = sum(sum(row["stress_counts"].get(key, 0) for key in ("none", "low", "high"))
-                 for row in summary["by_day"])
-    clarity = sum(sum(row["clarity_counts"].get(key, 0) for key in ("clear", "mixed", "foggy"))
-                  for row in summary["by_day"])
+    stress_counts, clarity_counts = Counter(), Counter()
+    for row in summary["by_day"]:
+        stress_counts.update(row["stress_counts"])
+        clarity_counts.update(row["clarity_counts"])
+    stress = sum(stress_counts[key] for key in ("none", "low", "high"))
+    clarity = sum(clarity_counts[key] for key in ("clear", "mixed", "foggy"))
     return (f"{label}: {seconds // 60}m {seconds % 60:02d}s active work time. "
-            f"Recorded check-ins: {total}; self-reported stress answered {stress}/{total} ({total - stress} missing), "
-            f"clarity answered {clarity}/{total} ({total - clarity} missing).")
+            f"Across the check-ins shown here, self-reported stress: {stress}/{total} rated, "
+            f"{stress_counts['unsure']} unsure, {stress_counts['skipped']} skipped, {stress_counts['expired']} expired; "
+            f"clarity: {clarity}/{total} rated, {clarity_counts['unsure']} unsure, {clarity_counts['skipped']} skipped.")
 
 
 def report_overview(snapshot):
     total = len(snapshot.self_reports)
-    answered = sum(row.state == "answered" for row in snapshot.self_reports)
+    counts = Counter(row.state for row in snapshot.self_reports)
     seconds = sum(segment.duration_seconds for segment in snapshot.segments)
     camera = "No camera observations have been finalized; no facial stress estimate is made."
     if snapshot.segments:
@@ -60,5 +64,6 @@ def report_overview(snapshot):
             coverage = "facial measurements are available"
         interrupted = "; a camera run was interrupted" if any(not segment.complete for segment in snapshot.segments) else ""
         camera = f"Finalized camera-on time: {seconds:g} s; {coverage}{interrupted}."
-    return (f"Self-reported stress answers: {answered}/{total} ({total - answered} missing); "
+    return (f"Self-reported stress check-ins in this report: {counts['answered']}/{total} rated, "
+            f"{counts['unsure']} unsure, {counts['skipped']} skipped, {counts['expired']} expired; "
             f"device readings supplied: {len(snapshot.measurements)}. {camera}")

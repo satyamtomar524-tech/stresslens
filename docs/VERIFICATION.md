@@ -2,9 +2,9 @@
 
 **Accepted application checks: 20 October 2026. Presentation copy: 20 October 2026.**
 
-The tests below were run in the earlier accepted release. Arranging this presentation copy did not rerun the application suites. Instead, the documentation-only check verifies that all 63 frozen source/test/config/asset files and all three approved screenshots remain byte-for-byte unchanged.
+The October tests below were run in the earlier accepted release. Arranging that presentation copy did not rerun the application suites; its documentation-only check verified 63 frozen source/test/config/asset files and three approved screenshots. This describes the historical snapshot, not an immutability rule or a current checkout verification. Active development and fresh checks are recorded in dated sections below.
 
-## Recorded checks
+## Historical checks — 20 October 2026
 
 | Scope | Recorded result | What it establishes |
 |---|---|---|
@@ -56,12 +56,50 @@ Frozen source map SHA-256:
 Original accepted archive SHA-256:
 `85c3327bbdaae9edb0f98b6e23c12f89989c708951f6888b1a4ab7fce0b61783`
 
-These are content identities, not Git commits. The original accepted archive is preserved locally. This presentation copy revises README and the portfolio story; adds setup, this record and a visual PDF; and regenerates its package manifest. Source, tests, configuration, assets and approved screenshots remain unchanged. The original 73-file archive count does not describe this expanded presentation copy.
+These are content identities, not Git commits. The historical record says the original accepted archive was preserved locally; that external archive is not supplied in this repository. The presentation revision changed README and the portfolio story, added setup, this record and a visual PDF, and generated a package manifest while preserving application source and approved screenshots. The original 73-file archive count did not describe the expanded presentation copy and does not describe later development.
 
-`PACKAGE_MANIFEST.json` lists the files in this copy, excluding itself. The surrounding portfolio folder's release notes record the new inventory and presentation checks.
+`PACKAGE_MANIFEST.json` is now explicitly labelled as a historical 20 October packaging record. Its file hashes, sizes and test results describe that earlier snapshot, not the current checkout. The November documentation already differed from that inventory before the recovery patch. Historical references to a surrounding portfolio folder concern materials outside this repository.
+
+## Fresh checks — 17 November 2026 recovery patch
+
+**Baseline:** Git commit `d7f1eaee02f3d7f9f8634e9bf9a6ecea9ff5678e`. The final checks below cover that baseline plus the recovery patch's summary/test changes. This patch restores project direction and contributor instructions, corrects summary state/scope wording and distinguishes historical packaging evidence from current development. It does not change report schemas, persistence, navigation, camera behavior or models.
+
+| Check | Actual result | Scope |
+|---|---|---|
+| Unchanged baseline, documented seven-file model-free scope | 208 passed, 1 warning, 1.67 seconds | Fresh baseline run before source/test edits. |
+| Summary regression checks before the fix | 4 failed, 8 passed | Expected failures reproduced the missing scope labels and collapsed response states. |
+| Summary regression checks after the initial fix | 12 passed, 1 warning, 0.08 seconds | Explicit unsure/skipped/expired counts, real zero ratings, empty data, non-mutation and existing camera descriptions. |
+| Final seven-file model-free scope | 210 passed, 1 warning, 1.65 seconds | Same scope as the baseline with two added test cases; no failures or skips. |
+| Ruff 0.17.0 | All checks passed | `app.py`, `stresslens`, `scripts` and `tests`. |
+| Dependency index listing | All 87 exact lock pins listed for the current target | Availability only; no dependency resolution or full application installation. |
+
+The final run also includes the reviewed wording correction from clarity "supplied" to "rated": an unsure response is supplied, but it is not a specific clarity rating. Its two focused assertions failed before that correction and passed in the final scope.
+
+These are overlapping scopes and before/after runs; do not add their counts. The 210-test scope does not replace the historical 484-test installed-artifact scope.
+
+**Environment:** Linux x86_64, Python 3.12.14, pytest 9.2.0, Ruff 0.17.0. A separate verification virtual environment inherited system site packages. Only pytest, its missing small dependencies and Ruff were installed for this work; no application lock, face SDK, model weights or research datasets were installed. The single pytest warning came from the inherited AnyIO 4.14.2 plugin importing pytest's deprecated `CallSpec2` alias (`PytestRemovedIn10Warning`); it was not suppressed.
+
+The commands below ran from the project root using the verification environment's Python. The model-free run also set pytest's `cache_dir` to a scratch directory outside the checkout; this does not change the test scope.
+
+```text
+python -B -m pytest -q -rs tests/test_output_summaries.py
+python -B -m pytest -q -rs tests/test_wellbeing.py tests/test_wellbeing_store.py tests/test_personal_patterns.py tests/test_demo_week.py tests/test_session_report.py tests/test_session_measurements.py tests/test_output_summaries.py
+python -B -m ruff check --no-cache app.py stresslens scripts tests
+```
+
+The two checked Python files have these SHA-256 content identities:
+
+| File | SHA-256 |
+|---|---|
+| `stresslens/output_summaries.py` | `d671f19cfee434315f6ca6a7bbcf5071cd66b641d07ba276b534493072f0f88d` |
+| `tests/test_output_summaries.py` | `adb95c603014c0414b1b308bcf6948a64200441fb173b7799911bd7af609ef0f` |
+
+An independent AI-assisted review inspected the code, new instructions, source hashes and historical manifest preservation. It found no critical or important issues; two wording clarifications were applied and covered by the final checks. This is project QA, not external certification.
+
+**Not rerun or established here:** the full installed-artifact suite, Streamlit AppTests, a browser journey, the owner's Windows/Python 3.13 environment, physical camera/SDK performance, a clean application installation, user benefit or scientific prediction validity. Existing screenshots and the PDF remain dated presentation examples.
 
 ## Remaining limits
 
 Physical-camera/SDK performance, phone/watch operation, scientific stress validation and clean-machine setup remain unverified. The optional camera-rate decline has no established cause. No clinical accuracy, guaranteed 10 Hz, production deployment, user adoption or business impact is claimed.
 
-Screenshots are approved captures from disposable fictional QA state, taken on 20 October 2026. They do not contain participant data. Publication and project licensing remain separate steps.
+Screenshots are approved captures from disposable fictional QA state, taken on 20 October 2026. They do not contain participant data. The repository is public; a project-code license has not been selected.
