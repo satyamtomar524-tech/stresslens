@@ -107,7 +107,7 @@ The new `stresslens-work-report/1` JSON/TXT exports contain the same selected an
 
 Small additional improvement: the all-check-in patterns now explicitly state that current and opted-in restored history can span multiple sessions. Category bars retain zero, unsure, skipped and expired states without interpolation.
 
-Remaining milestone evidence: real-browser visual/download acceptance and user review on a disposable local session. AppTest journeys are not a substitute for a browser visual review. Next after that gate: milestone 3 clean-environment reproducibility, not camera inference or a rewrite.
+The disposable real-browser visual/download check is recorded below and in `VERIFICATION.md`. Owner review of the report's clarity remains open. AppTest journeys do not establish that user acceptance. A different clean computer is still untested; camera inference and a rewrite are not the next task.
 
 
 ## Progress — 17 November 2026 browser and environment checks
@@ -115,3 +115,7 @@ Remaining milestone evidence: real-browser visual/download acceptance and user r
 The camera-off work-session report was exercised in a disposable local browser; ended-session JSON and TXT downloads contained matching fictional data. A fresh isolated Windows environment on the same laptop installed the pinned lock, passed pip check and fictional UI AppTests, and rendered a fictional camera-off browser flow. Details and limits are in VERIFICATION.md. A separate clean computer, user acceptance and camera validation remain unverified. The report scope and explicit closing choice remain as specified above.
 
 The previous camera slowdown remains unexplained. Its performance investigation requires privacy-preserving, user-run measurements under the owner's diagnostic boundaries before a fix or numerical improvement is claimed. No camera/SDK use or participant data collection was performed during this progress check. A draft usability procedure is in USABILITY_TRIAL_DRAFT.md; it is not an invitation or trial result.
+
+## Progress — 19 November 2026 local source adoption
+
+The owner's VS Code workspace now opens the reviewed recovery checkout, while preserving the earlier `02_Code` source and its environment. A fresh camera-off Windows browser journey showed the work-session chart and matching JSON/TXT payloads. After a controlled restart, the app reopened with an empty work clock and no current check-ins, as the existing transient design predicts. The exact checks, one intermittent AppTest timeout, safe rollback and limits are recorded in `VERIFICATION.md`. This establishes the bounded local launch and report journey; it does not establish durable session recovery or owner usability acceptance. The owner's latest execution sequence makes persistence/recovery the next separately reviewed design task, without changing the original research goal.

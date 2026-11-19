@@ -1,7 +1,7 @@
 # StressLens
 
 > **Working prototype — Stage 2 in progress**  
-> **Project owner: Satyam Tomar · Status updated: 17 November 2026**
+> **Project owner: Satyam Tomar · Status updated: 19 November 2026**
 
 ### Earlier awareness during work
 
@@ -23,7 +23,7 @@ The current foundation is a local Python/Streamlit prototype with a work clock, 
 - [Run it locally](docs/SETUP.md): setup, optional components and a short demonstration.
 - [Verification record](docs/VERIFICATION.md): what was checked and what remains unverified.
 
-The recovery branch adds **Work session → Your work-session report**: current/latest-ended session answers, categorical charts, factual wording and separate work-scoped JSON/TXT downloads. Closing answers after End require an explicit choice; older/restored history stays separate. Browser visual acceptance remains pending.
+The recovery branch adds **Work session → Your work-session report**: current/latest-ended session answers, categorical charts, factual wording and separate work-scoped JSON/TXT downloads. Closing answers after End require an explicit choice; older/restored history stays separate. A dated disposable browser journey and export comparison are recorded; broader user review remains pending.
 
 ## What the application does
 
@@ -40,7 +40,7 @@ The fictional-week view has no export. Reports do not infer stress from facial m
 
 ## Continuing development
 
-Start with [AGENTS.md](AGENTS.md) and the [project direction](docs/PROJECT_DIRECTION.md). They preserve the original aim, explain the code/data boundaries and define the next product milestone: an understandable report reached directly from Work session. Current reports and the work clock have different scopes; that milestone is still open.
+Start with [AGENTS.md](AGENTS.md) and the [project direction](docs/PROJECT_DIRECTION.md). They preserve the original aim and explain the code/data boundaries. The report is now reachable directly from Work session in the reviewed checkout. Its completed clock and current answers are transient, so durable session recovery needs a separate design and verification step.
 
 ## My contribution
 
@@ -58,12 +58,13 @@ Stage 2 is the current development phase, not a completed release. Stage 2 work 
 
 - [x] Restore the original product goal and durable contributor instructions.
 - [x] Keep unsure, skipped and expired responses explicit in the short summaries, and label the displayed check-in scope separately from active work time.
-- [ ] Make the work-session report easy to reach and validate the end-to-end user experience.
+- [x] Make the work-session report easy to reach; check its chart and JSON/TXT parity in a disposable local browser journey.
+- [ ] Review the report's clarity and responsive layout with the owner.
 - [ ] Verify setup on a clean machine and document any reproducibility issues.
 - [ ] Investigate optional camera throughput with aligned diagnostic measurements before choosing a fix.
 - [ ] Record the results and remaining limitations before a wider prototype trial.
 
-**Latest update — 17 November 2026:** restored the original purpose and coding instructions; corrected short-summary wording about uncertainty and record scope. See the dated [verification record](docs/VERIFICATION.md) for the actual checks. Milestone 2 adds work-session reporting on this branch; browser acceptance, clean installation and automatic detection remain open work.
+**Latest update — 19 November 2026:** the owner's VS Code workspace now opens this reviewed checkout without replacing the earlier source. A fictional camera-off browser journey showed the session chart and matching JSON/TXT exports. Restart returned the app to an empty work state, confirming that completed-session recovery is still unfinished. The dated [verification record](docs/VERIFICATION.md) includes an intermittent AppTest timeout and the exact passing repeat. Clean-machine installation and automatic detection remain unverified.
 
 ## Verification
 

@@ -12,6 +12,18 @@ If the application is not running, the command is:
 
 Run it from the folder containing `app.py`, then open `http://127.0.0.1:8505/`. The development environment uses Windows and Python 3.13.15. File watching is disabled in the checked configuration. The supplied legacy launcher may use port 8501; use the explicit command above for 8505.
 
+### Owner's Stage 2 VS Code workspace — 19 November 2026
+
+`MoodSyncAI.code-workspace` now opens `03_Other_files/milestone2-checkout` as its StressLens source folder. The earlier `02_Code` source is preserved. This reviewed checkout has no `.venv` of its own; the workspace selects the existing environment in `02_Code`. From a VS Code terminal whose working directory is the reviewed checkout, use:
+
+```powershell
+$workspace = Get-Content -LiteralPath '..\..\MoodSyncAI.code-workspace' -Raw | ConvertFrom-Json
+$python = $workspace.settings.'python.defaultInterpreterPath'
+& $python -B -m streamlit run app.py --server.address=127.0.0.1 --server.port=8505
+```
+
+If port 8505 is already serving this checkout, open that preview instead of starting another process. This local workspace route does not replace the separate new-installation procedure below. Restoring the dated workspace backup described in `VERIFICATION.md` reverses the folder selection without changing either source copy.
+
 ## New installation
 
 This is the reproduction procedure. A clean-machine installation has not been verified.
