@@ -1,13 +1,13 @@
 # StressLens
 
 > **Working prototype — Stage 2 in progress**  
-> **Project owner: Satyam Tomar · Status updated: 11 November 2026**
+> **Project owner: Satyam Tomar · Status updated: 19 November 2026**
 
-### Work time, voluntary check-ins and clear reports
+### Earlier awareness during work
 
-I built StressLens as an AI-assisted portfolio project around a simple workday problem: keeping track of work time and recording how I feel without losing the context behind the numbers.
+I started StressLens because I sometimes worked for long periods and only noticed mental fatigue or fogginess afterwards. The goal is to help an individual notice possible difficulties earlier, choose when to pause and understand personal work patterns through clear graphs and short explanations.
 
-The result is a local Python/Streamlit prototype with a work clock, optional check-ins, break reminders and descriptive charts. The main demonstration works with the camera off.
+The current foundation is a local Python/Streamlit prototype with a work clock, voluntary check-ins, break reminders and descriptive charts. It works with the camera off. Reliable automatic stress or fatigue detection remains an unfinished, unvalidated research goal; the timer and check-ins do not complete that ambition.
 
 **Python · Streamlit · pandas · Local-first demonstration**
 
@@ -17,10 +17,13 @@ The result is a local Python/Streamlit prototype with a work clock, optional che
 
 ## Take a quick look
 
-- [Visual project brief](docs/Satyam_Tomar_StressLens.pdf): three pages covering the product, my contribution and the evidence.
+- [Project direction and next milestones](docs/PROJECT_DIRECTION.md): the original goal, current foundation and concrete next task.
+- [Visual project brief](docs/Satyam_Tomar_StressLens.pdf): the earlier three-page portfolio snapshot; the current status is recorded here and in the project direction.
 - [How I worked on it](docs/PORTFOLIO.md): the problem, design choices and code/test references.
 - [Run it locally](docs/SETUP.md): setup, optional components and a short demonstration.
 - [Verification record](docs/VERIFICATION.md): what was checked and what remains unverified.
+
+The recovery branch adds **Work session → Your work-session report**: current/latest-ended session answers, categorical charts, factual wording and separate work-scoped JSON/TXT downloads. Closing answers after End require an explicit choice; older/restored history stays separate. A dated disposable browser journey and export comparison are recorded; broader user review remains pending.
 
 ## What the application does
 
@@ -35,6 +38,10 @@ The result is a local Python/Streamlit prototype with a work clock, optional che
 
 The fictional-week view has no export. Reports do not infer stress from facial movement or combine self-reports and device readings into a health score. Optional face/text tools are exploratory and separate from the core demonstration.
 
+## Continuing development
+
+Start with [AGENTS.md](AGENTS.md) and the [project direction](docs/PROJECT_DIRECTION.md). They preserve the original aim and explain the code/data boundaries. The report is now reachable directly from Work session in the reviewed checkout. Its completed clock and current answers are transient, so durable session recovery needs a separate design and verification step.
+
 ## My contribution
 
 I defined the use case, set priorities, requested changes and reviewed the experience. Codex helped with implementation, debugging, tests and documentation. The project demonstrates that collaborative process; I do not claim to have independently written every component or trained MediaPipe or Qwen.
@@ -47,20 +54,25 @@ I defined the use case, set priorities, requested changes and reviewed the exper
 | Stage 2 — refinement and validation | In progress | Improve usability and reporting, check installation reproducibility and investigate optional camera performance. |
 | Future user testing | Planned | Gather voluntary feedback after the local experience and consent flow are ready. |
 
-Stage 2 is the current development phase, not a completed release. Its remaining work includes:
+Stage 2 is the current development phase, not a completed release. Stage 2 work includes:
 
-- [ ] Refine the report presentation and validate the end-to-end user experience.
+- [x] Restore the original product goal and durable contributor instructions.
+- [x] Keep unsure, skipped and expired responses explicit in the short summaries, and label the displayed check-in scope separately from active work time.
+- [x] Make the work-session report easy to reach; check its chart and JSON/TXT parity in a disposable local browser journey.
+- [ ] Review the report's clarity and responsive layout with the owner.
 - [ ] Verify setup on a clean machine and document any reproducibility issues.
 - [ ] Investigate optional camera throughput with aligned diagnostic measurements before choosing a fix.
 - [ ] Record the results and remaining limitations before a wider prototype trial.
 
-**Latest update — 11 November 2026:** clarified the public prototype status, project ownership and Stage 2 roadmap. This update changes documentation only; it does not claim new features, new test results or a completion date.
+**Latest update — 19 November 2026:** the owner's VS Code workspace now opens this reviewed checkout without replacing the earlier source. A fictional camera-off browser journey showed the session chart and matching JSON/TXT exports. Restart returned the app to an empty work state, confirming that completed-session recovery is still unfinished. The dated [verification record](docs/VERIFICATION.md) includes an intermittent AppTest timeout and the exact passing repeat. Clean-machine installation and automatic detection remain unverified.
 
 ## Verification
 
 On 20 October 2026, the existing development environment recorded **484 passing tests, 10 real-SDK skips and 7 passing subtests**, with Ruff clean. A separate model-free test scope from the source-only package recorded **208 passes**. These scopes overlap and their counts must not be added.
 
-Disposable browser checks covered the camera-off journey and report exports. The original 73-file release received a separate Codex QA archive review. This presentation copy keeps all 63 frozen source/test/config/asset files unchanged and adds revised documentation. The checks, limitations and documentation-only changes are described in the [verification record](docs/VERIFICATION.md).
+The October disposable browser checks covered the camera-off journey and report exports; the original 73-file release received a separate Codex QA archive review. The presentation snapshot preserved 63 source/test/config/asset files. Active development now continues beyond that snapshot, so its frozen-file condition and historical package manifest do not describe the current checkout. New checks and remaining limits are recorded separately in the [verification record](docs/VERIFICATION.md).
+
+On 17 November 2026, the recovery patch recorded **210 passing model-free tests** and a clean Ruff check. One inherited pytest-plugin deprecation warning remains. These checks do not establish a full application installation, browser behavior or hardware performance.
 
 ## Scope
 

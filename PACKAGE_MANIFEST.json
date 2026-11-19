@@ -1,7 +1,7 @@
 {
   "schema": "stresslens-public-package/1",
   "prepared_date": "2026-10-20",
-  "purpose": "Local recruiter presentation copy; not published",
+  "purpose": "Historical packaging record for the 20 October 2026 presentation; not a current checkout inventory",
   "source_identity_sha256": "571a5c342ea69876249298c77e9776b5e631a903261c196033a69122d164e913",
   "verification": {
     "source_scope": "Existing installed environment and local artifacts",
@@ -333,5 +333,13 @@
       "sha256": "97c6dc9a1a20de0fd5095205b58d2f206d71d3335a57e97ac6885f0cafb1f3f2",
       "bytes": 10683
     }
+  },
+  "record_type": "historical_packaging_record",
+  "historical_purpose_as_recorded": "Local recruiter presentation copy; not published",
+  "scope_notice": "The files, hashes and verification counts below describe the earlier presentation snapshot. Subsequent documentation and source changes are recorded in Git and docs/VERIFICATION.md; do not use this record to verify the current checkout.",
+  "current_publication": {
+    "status": "public",
+    "verified_date": "2026-11-17",
+    "url": "https://github.com/satyamtomar524-tech/stresslens"
   }
 }

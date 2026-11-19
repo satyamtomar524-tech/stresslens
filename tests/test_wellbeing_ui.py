@@ -230,3 +230,84 @@ def test_existing_point_api_saves_opted_in_history_before_a_later_render(ui):
     ui.app.session_state["report_controller"].add_point("2 · High")
     assert len(ui.state.restored) == 1
     assert ui.state.restored[0]["stress_value"] == 2 and ui.state.restored[0]["clarity"] == "skipped"
+
+
+# Milestone 2: disposable Work session -> report journeys.
+def test_session_report_journey_closing_scope_and_downloads(ui):
+    import json
+    from stresslens.work_report import build_work_report, work_report_json, work_report_text
+    from stresslens.wellbeing_ui import current_records
+    button(ui.app, "Start work").click().run()
+    answer(ui, stress="0 · None", clarity="Clear")
+    ui.clock.value = 60
+    button(ui.app, "Pause work").click().run()
+    ui.clock.value = 160
+    button(ui.app, "Resume work").click().run()
+    ui.clock.value = 180
+    button(ui.app, "End work").click().run()
+    answer(ui, stress="Unsure", clarity="Unsure")  # Default after End remains standalone.
+    ui.app.checkbox(key=f"wellbeing_closing_{ui.state.form_generation}_{ui.state.work.session_id}").check()
+    answer(ui, stress="Skip")
+    report = build_work_report(ui.state.work, current_records(ui.app.session_state["report_controller"], ui.state))
+    assert report["active_seconds"] == 80
+    assert len(report["checkins"]) == 2
+    assert [r["stress_state"] for r in report["checkins"]] == ["answered", "skipped"]
+    assert report["checkins"][0]["stress_value"] == 0
+    assert json.loads(work_report_json(report)) == report
+    assert json.loads(work_report_text(report).split("\n\n", 1)[1]) == report
+    assert "Your work-session report" in [item.value for item in ui.app.subheader]
+    assert "Download work report JSON" in [item.label for item in ui.app.get("download_button")]
+    assert not ui.state.history_path.exists()
+    assert ui.state.work.state == "ended"
+
+
+def test_session_report_excludes_restored_and_old_sessions_and_clear(ui):
+    from stresslens.work_report import build_work_report
+    from stresslens.wellbeing_ui import current_records
+    controller = ui.app.session_state["report_controller"]
+    def report():
+        return build_work_report(ui.state.work, current_records(controller, ui.state))
+    button(ui.app, "Start work").click().run()
+    assert not report()["checkins"]
+    answer(ui, stress="Unsure", clarity="Unsure")
+    old = report()["session_id"]
+    ui.state.restored = list(report()["checkins"])
+    ui.state.history_enabled = True
+    controller.workspace.clear()
+    ui.app.run()
+    assert not report()["checkins"] and ui.state.work.session_id == old
+    assert ui.state.restored  # Clear never repopulates the current report from history.
+    ui.state.history_enabled = False
+    button(ui.app, "End work").click().run()
+    button(ui.app, "Start work").click().run()
+    assert report()["session_id"] != old and not report()["checkins"]
+    answer(ui, stress="Unsure", clarity="Unsure")
+    assert len(report()["checkins"]) == 1
+    counts = {r["answer"]: r["count"] for r in report()["answer_counts"]}
+    assert counts["Stress: Unsure"] == 1 and counts["Stress: None"] == 0
+    assert counts["Clarity: Unsure"] == 1
+
+
+def test_second_session_does_not_inherit_first_answers(ui):
+    from stresslens.work_report import build_work_report
+    from stresslens.wellbeing_ui import current_records
+    button(ui.app, "Start work").click().run()
+    answer(ui, clarity="Foggy")
+    button(ui.app, "End work").click().run()
+    button(ui.app, "Start work").click().run()
+    report = build_work_report(ui.state.work, current_records(ui.app.session_state["report_controller"], ui.state))
+    assert not report["checkins"]
+    assert len(ui.app.session_state["report_workspace"].snapshot().self_reports) == 1
+    assert not ui.app.exception
+
+
+
+def test_closing_choice_does_not_carry_to_another_session(ui):
+    button(ui.app, "Start work").click().run()
+    button(ui.app, "End work").click().run()
+    key = f"wellbeing_closing_{ui.state.form_generation}_{ui.state.work.session_id}"
+    ui.app.checkbox(key=key).check().run()
+    button(ui.app, "Start work").click().run()
+    button(ui.app, "End work").click().run()
+    fresh_key = f"wellbeing_closing_{ui.state.form_generation}_{ui.state.work.session_id}"
+    assert fresh_key != key and not ui.app.checkbox(key=fresh_key).value

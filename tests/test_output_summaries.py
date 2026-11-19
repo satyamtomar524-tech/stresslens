@@ -1,5 +1,6 @@
 """Literal count/score fixtures protect missing data and separate provenance."""
 import importlib
+from copy import deepcopy
 from datetime import UTC, datetime
 
 import pytest
@@ -39,15 +40,33 @@ def test_failed_face_analysis_is_unavailable_instead_of_a_no_face_observation():
     assert "no face measured" not in summary.lower()
 
 
-def test_work_summary_uses_actual_active_time_and_all_missing_categories():
-    rows = {"total_checkins": 3, "days_with_checkins": 1, "by_day": [{
+def test_work_summary_keeps_unsure_skipped_and_expired_distinct_across_displayed_days():
+    rows = {"total_checkins": 6, "days_with_checkins": 2, "by_day": [{
         "stress_counts": {"none": 1, "low": 0, "high": 0, "unsure": 1, "skipped": 1, "expired": 0},
         "clarity_counts": {"clear": 0, "mixed": 1, "foggy": 0, "unsure": 1, "skipped": 1},
+    }, {
+        "stress_counts": {"none": 0, "low": 1, "high": 0, "unsure": 1, "skipped": 0, "expired": 1},
+        "clarity_counts": {"clear": 0, "mixed": 0, "foggy": 1, "unsure": 2, "skipped": 0},
     }]}
+    before = deepcopy(rows)
     summary = summaries().work_overview("paused", 95, rows)
     assert "Paused" in summary and "1m 35s" in summary
-    assert "1/3" in summary and "2 missing" in summary
-    assert "self-reported" in summary.lower() and "clarity" in summary.lower()
+    assert "active work time" in summary and "check-ins shown here" in summary
+    stress, clarity = summary.split("clarity:")
+    assert "2/6 rated" in stress and "2 unsure" in stress and "1 skipped" in stress and "1 expired" in stress
+    assert "2/6 rated" in clarity and "3 unsure" in clarity and "1 skipped" in clarity
+    assert "expired" not in clarity and "missing" not in summary
+    assert "self-reported" in summary.lower()
+    assert rows == before
+
+
+def test_empty_work_summary_does_not_infer_a_state_from_absent_answers():
+    rows = {"total_checkins": 0, "days_with_checkins": 0, "by_day": []}
+    summary = summaries().work_overview("idle", 0, rows)
+    assert "Not started" in summary and "0m 00s active work time" in summary
+    assert "check-ins shown here" in summary and summary.count("0/0 rated") == 2
+    assert "calm" not in summary.lower() and "no stress" not in summary.lower()
+    assert "improved" not in summary.lower()
 
 
 def test_empty_report_summary_never_claims_camera_measurements_or_stress():
@@ -56,8 +75,25 @@ def test_empty_report_summary_never_claims_camera_measurements_or_stress():
     assert "0" in summary and "no camera" in summary.lower()
     workspace.add_self_report(SelfReport("fictional-skip", datetime(2026, 10, 19, tzinfo=UTC), "skipped"))
     summary = summaries().report_overview(workspace.snapshot())
-    assert "0/1" in summary and "1 missing" in summary
+    assert "0/1 rated" in summary and "0 unsure" in summary and "1 skipped" in summary and "0 expired" in summary
     assert "no camera" in summary.lower()
+
+
+def test_report_summary_keeps_zero_ratings_and_each_non_rating_state_without_mutation():
+    workspace = ReportWorkspace()
+    for index, (state, value) in enumerate([
+        ("answered", 0), ("answered", 2), ("unsure", None),
+        ("unsure", None), ("skipped", None), ("expired", None),
+    ]):
+        workspace.add_self_report(SelfReport(
+            f"fictional-{index}", datetime(2026, 10, 19, 9, index, tzinfo=UTC), state, value,
+        ))
+    before = workspace.snapshot()
+    summary = summaries().report_overview(before)
+    assert "check-ins in this report" in summary and "2/6 rated" in summary
+    assert "2 unsure" in summary and "1 skipped" in summary and "1 expired" in summary
+    assert "missing" not in summary and "no camera" in summary.lower()
+    assert workspace.snapshot() == before
 
 
 def test_finalized_camera_summary_without_valid_samples():

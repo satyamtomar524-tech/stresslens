@@ -12,6 +12,18 @@ If the application is not running, the command is:
 
 Run it from the folder containing `app.py`, then open `http://127.0.0.1:8505/`. The development environment uses Windows and Python 3.13.15. File watching is disabled in the checked configuration. The supplied legacy launcher may use port 8501; use the explicit command above for 8505.
 
+### Owner's Stage 2 VS Code workspace — 19 November 2026
+
+`MoodSyncAI.code-workspace` now opens `03_Other_files/milestone2-checkout` as its StressLens source folder. The earlier `02_Code` source is preserved. This reviewed checkout has no `.venv` of its own; the workspace selects the existing environment in `02_Code`. From a VS Code terminal whose working directory is the reviewed checkout, use:
+
+```powershell
+$workspace = Get-Content -LiteralPath '..\..\MoodSyncAI.code-workspace' -Raw | ConvertFrom-Json
+$python = $workspace.settings.'python.defaultInterpreterPath'
+& $python -B -m streamlit run app.py --server.address=127.0.0.1 --server.port=8505
+```
+
+If port 8505 is already serving this checkout, open that preview instead of starting another process. This local workspace route does not replace the separate new-installation procedure below. Restoring the dated workspace backup described in `VERIFICATION.md` reverses the folder selection without changing either source copy.
+
 ## New installation
 
 This is the reproduction procedure. A clean-machine installation has not been verified.
@@ -34,7 +46,9 @@ Use a disposable session with fictional inputs. Leave camera/SDK consent and sav
 4. **60-75 seconds:** show check-in and reminder controls. Reminders are in-app prompts, not operating-system notifications; do not imply a full reminder interval elapsed.
 5. **75-90 seconds:** explain the separate session-report exports and the AI-assisted contribution.
 
-For a longer demo, save one clearly fictional check-in in the disposable session, then open **Live camera -> Your session report -> More details** without enabling the camera. JSON and TXT downloads describe that same report. Clear only the disposable report afterwards.
+For the new work report, use **Work session → Your work-session report** after Start, a fictional check-in and End. Optionally attach a closing answer explicitly; otherwise it stays standalone. Open **Work report details and downloads** for work-scoped JSON/TXT, including clarity and active time. Download before starting another session. These exports are separate from the existing observation-ledger exports.
+
+For the older observation-ledger demo, save one clearly fictional check-in in the disposable session, then open **Live camera -> Your session report -> More details** without enabling the camera. JSON and TXT downloads describe that same report. Clear only the disposable report afterwards.
 
 The fictional-week view has no export. Upload & text produces a separate result JSON. Manual/CSV readings do not establish a connection to a wearable.
 
